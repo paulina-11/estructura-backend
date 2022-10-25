@@ -1,4 +1,6 @@
 import express from 'express'
+
+import itemRoutes from './routes/itemRoutes.js'
 const api = express()
 api.get('/status',(_,res)=>{
     res.json({
@@ -6,4 +8,6 @@ api.get('/status',(_,res)=>{
     })
 })
 
+// se importan todas las rutas
+api.use(itemRoutes)
 export default api;
