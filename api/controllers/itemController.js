@@ -4,6 +4,7 @@
 /*
  *req.body
  *req.query
+ * ? &
  *req.params
  *req.headers
  */
@@ -30,15 +31,16 @@ const create = async (req, res) => {
 // ver toda la base
 const read = async (req,res) => {
 try {
-    const item = await Item.find();
+    const items = await Item.find(req.query);
     return res.json({
       msg: "leido satisfactoriamente 💚",
-      item,
+      items,
     });
   } catch (error) {
     // que hacer con ese error
+    // 500 error del servidor
     return res.status(500).json({
-        msg:'Error al leer Item 💔',
+        msg:'Error al buscar todos los Items 💔',
         error
     })
   }
@@ -46,17 +48,17 @@ try {
 
 // ver un usuario
 const readOne = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
     const item = await Item.findById(id);
     return res.json({
-      msg: "encontrado satisfactoriamente 💚",
+      msg: "Item encontrado satisfactoriamente 💚",
       item,
     });
   } catch (error) {
     // que hacer con ese error
     return res.status(500).json({
-      msg: "Error al encontrar eliminar Item 💔",
+      msg: "Error al encontrar Item 💔",
       error,
     });
   }
@@ -64,10 +66,12 @@ const readOne = async (req, res) => {
 
 // actualizar un usuario
 const update = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
-    const {name, price, stock} = req.body
-    const item = await Item.updateOne({_id: id},{ $set: {name, price, stock}});
+    const item = await Item.findByIdAndUpdate(id, req.body, 
+    {
+      new:true
+    });
     return res.json({
       msg: "Modificado satisfactoriamente 💚",
       item,
