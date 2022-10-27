@@ -1,5 +1,7 @@
 import express  from "express";
-import * as itemController from '../controllers/itemController.js'
+import * as itemController from '../controllers/itemController.js';
+import {createItemValidator} from '../middlewares/createItemValidator'
+
 
 const router = express.Router();
 
@@ -7,12 +9,11 @@ const router = express.Router();
  * Todas las rutas que queramos de item
  */
 
-router.route("/items")
-  .post(itemController.create)
+router
+  .route("/items")
+  .post(createItemValidator, itemController.create)
   .get(itemController.read);
-// router.route('/items').get(
-//     itemController.read
-// )
+
 router
   .route("/items/:id")
   .get(itemController.readOne)

@@ -1,11 +1,17 @@
+// Nivel general
 import express from 'express'
-
 import itemRoutes from './routes/itemRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import ticketRoutes from './routes/ticketRoutes.js'
+import morgan from 'morgan'
+
 const api = express()
+api.use(morgan('combined'))
 // acepte body en formato json
 api.use(express.json())
+// Todas las rutas van a tener este middleware
+
+
 api.get('/status',(_,res)=>{
     res.json({
         msg:'Api en linea'
