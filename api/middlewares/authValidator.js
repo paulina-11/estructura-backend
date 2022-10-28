@@ -1,3 +1,4 @@
+// validacion del token
 import jwt from 'jwt-simple'
 import config from '../config/index.js';
 import User from '../models/User.js';

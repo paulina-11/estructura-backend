@@ -10,20 +10,20 @@ const router = express.Router();
  */
 
 router
-  .route("/items")
+  .route("/")
   .post(createItemValidator, itemController.create)
   .get(itemController.read);
 
 router
-  .route("/items/:id")
+  .route("/:id")
   .get(itemController.readOne)
-  .put(itemController.update);
+  .put(itemController.update)
+  .delete(
+    itemController.remove
+)
   
 // router.route('/items/:id').put(
 //     itemController.update
 // )
-router.route('/items/:id').delete(
-    itemController.remove
-)
 
 export default router;

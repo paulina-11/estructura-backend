@@ -4,6 +4,7 @@ import itemRoutes from './routes/itemRoutes.js'
 // import userRoutes from './routes/userRoutes.js'
 import authRoutes from './routes/authRoutes.js'
 import ticketRoutes from './routes/ticketRoutes.js'
+import { authValidator } from './middlewares/authValidator.js'
 import morgan from 'morgan'
 
 const api = express()
@@ -21,8 +22,9 @@ api.get('/status',(_,res)=>{
 
 
 api.use(authRoutes);
+
 // se importan todas las rutas
-api.use(itemRoutes);
+api.use("/items", authValidator, itemRoutes);
 // api.use(userRoutes);
-api.use(ticketRoutes);
+api.use("/tickets", authValidator, ticketRoutes);
 export default api;

@@ -3,18 +3,18 @@ import * as ticketController from "../controllers/ticketController.js";
 
 const router = express.Router();
 
-router.route('/tickets')
+router.route('/')
   .post(ticketController.create)
   .get(ticketController.read)
 
 router
-  .route("/tickets/:id")
+  .route("/:id")
     .get(ticketController.readById)
     .put(ticketController.update)
     .delete(ticketController.remove)
   
     router
-    .route("/tickets/:id/calculate")
+    .route("/:id/calculate")
           .put(ticketController.calculateById);
 
 export default router;
