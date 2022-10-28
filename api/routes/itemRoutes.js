@@ -1,6 +1,6 @@
 import express  from "express";
 import * as itemController from '../controllers/itemController.js';
-import {createItemValidator} from '../middlewares/createItemValidator'
+import {createItemValidator} from '../middlewares/createItemValidator.js'
 
 
 const router = express.Router();

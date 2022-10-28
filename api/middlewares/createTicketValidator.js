@@ -1,4 +1,4 @@
-import joi, { array } from "joi";
+import joi from "joi";
 
 const createTicketValidator = async (req,res, next) =>{
 

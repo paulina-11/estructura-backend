@@ -1,7 +1,8 @@
 // Nivel general
 import express from 'express'
 import itemRoutes from './routes/itemRoutes.js'
-import userRoutes from './routes/userRoutes.js'
+// import userRoutes from './routes/userRoutes.js'
+import authRoutes from './routes/authRoutes.js'
 import ticketRoutes from './routes/ticketRoutes.js'
 import morgan from 'morgan'
 
@@ -19,8 +20,9 @@ api.get('/status',(_,res)=>{
 })
 
 
+api.use(authRoutes);
 // se importan todas las rutas
 api.use(itemRoutes);
-api.use(userRoutes);
+// api.use(userRoutes);
 api.use(ticketRoutes);
 export default api;
